@@ -1,0 +1,53 @@
+#+title: nix-darwin - macOS Nix Flake Configuration
+#+author: mbrignall
+#+date: 03/12/2023
+
+* Introduction
+  This repository contains the Nix Flake configuration for macOS using nix-darwin. It provides a declarative and reproducible setup for managing your system and user packages, along with various system configurations.
+  
+* Configuration Files
+  - ~darwin-configuration.nix~: Defines the system and user packages, system services, and system state version.
+  - ~flake.nix~: Specifies dependencies and defines the darwinConfigurations for nix-darwin.
+  - ~home.nix~: Configuration for home-manager, including user packages and program settings.
+
+* System Packages
+  Here are some of the system packages installed:
+  - alacritty
+  - bat
+  - black
+  - docker
+  - emacs
+  - fd
+  - git
+  - jq
+  - node.js
+  - PostgreSQL
+  - shellcheck
+  - Zsh
+  - Fonts (Fira Mono, Font Awesome, etc.)
+    
+* Services
+  - nix-daemon: Enabled for package management.
+  - yabai and skhd: Window management tools.
+  - zsh: Configured with completion and aliases.
+
+* Keyboard Configuration
+  - Caps Lock remapped to Control.
+  - Other key mappings and settings.
+
+* Usage
+  To use this configuration, follow these steps:
+
+  1. Clone this repository.
+  2. Modify ~darwin-configuration.nix~, ~flake.nix~, and ~home.nix~ to suit your preferences (don't forget the usernames).
+  3. Set your system architecture in ~flake.nix~.
+  4. Update ~users.users."martinbrignall".home~ in ~flake.nix~ to match your home directory.
+  5. Install Nix if not already installed.
+  6. Use the ~build~ command (after editing the location)
+
+* Additional Notes
+  - Make sure the stateVersion in ~darwin-configuration.nix~ matches your setup.
+  - Customize the Zsh aliases and other configurations in ~home.nix~ to fit your workflow.
+
+Feel free to reach out if you have any questions or need further assistance.
+
