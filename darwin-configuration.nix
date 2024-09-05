@@ -52,6 +52,7 @@ in {
     html-tidy
     inkscape
     jq
+    lima
     mark
     nixd
     nixfmt
@@ -71,6 +72,9 @@ in {
     pandoc
     postgresql
     python3
+    python311Packages.grip
+    pipx
+    remmina
     roswell
     ruff
     sbcl
@@ -79,13 +83,16 @@ in {
     sketchybar
     slack
     spotify
+    stripe-cli
     syncthing
     terraform
     tex
     tree-sitter
+    utm
     realvnc-vnc-viewer
     vscode
     vscode-extensions.github.copilot
+    wget
     wkhtmltopdf-bin
     yamlfmt
     yaml-language-server
@@ -104,15 +111,6 @@ in {
     noto-fonts-emoji
     terminus-nerdfont
     victor-mono
-  ];
-
-  fonts.fontDir.enable = true;
-
-  fonts.fonts = [
-    pkgs.dejavu_fonts
-    pkgs.fira-code-nerdfont
-    pkgs.nerdfonts
-    pkgs.font-awesome_5
   ];
 
   # Auto upgrade nix package and the daemon service.eg
@@ -149,9 +147,6 @@ in {
   # System State Version
   system = {
     stateVersion = 4; # Ensure this matches your setup
-    activationScripts.extraActivation.text = ''
-      softwareupdate --install-rosetta --agree-to-license
-    '';
 
     defaults = {
       dock = {
@@ -159,7 +154,7 @@ in {
         show-recents = true;
         launchanim = true;
         mouse-over-hilite-stack = true;
-        orientation = "right";
+        orientation = "bottom";
         tilesize = 43;
         largesize = 64;
       };
@@ -173,5 +168,5 @@ in {
     };
   };
   programs.zsh.enable = true;
-
+  
 }

@@ -9,7 +9,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }: {
     darwinConfigurations."OVO-LPXDY5HKQ2" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin"; # Set to your system architecture
       modules = [
@@ -26,3 +26,4 @@
     };
   };
 }
+

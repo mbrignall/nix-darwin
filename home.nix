@@ -62,6 +62,8 @@ in
       export PATH="/Users/martin.brignall/.local/bin:$PATH"
       '';
       enableAutosuggestions = true;
+      syntaxHighlighting.enable = true;
+      enableCompletion = true;
       shellAliases = {
 
         # Git
