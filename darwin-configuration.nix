@@ -51,6 +51,8 @@ in {
     nix-direnv
     html-tidy
     inkscape
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    ispell
     jq
     lima
     mark
@@ -71,8 +73,12 @@ in {
     nodePackages.vscode-html-languageserver-bin
     pandoc
     postgresql
-    python3
-    python311Packages.grip
+    python311
+    python311Packages.black
+    python311Packages.isort
+    python311Packages.mypy
+    python311Packages.rope
+    python311Packages.python-lsp-ruff
     pipx
     remmina
     roswell
@@ -89,9 +95,6 @@ in {
     tex
     tree-sitter
     utm
-    realvnc-vnc-viewer
-    vscode
-    vscode-extensions.github.copilot
     wget
     wkhtmltopdf-bin
     yamlfmt
