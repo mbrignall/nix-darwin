@@ -75,10 +75,12 @@ in {
     postgresql
     python311
     python311Packages.black
+    python311Packages.debugpy
     python311Packages.isort
     python311Packages.mypy
     python311Packages.rope
-    python311Packages.python-lsp-ruff
+    python311Packages.pyflakes
+    python311Packages.pylsp-mypy
     pipx
     remmina
     roswell
