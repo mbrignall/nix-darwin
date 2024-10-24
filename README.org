@@ -3,51 +3,73 @@
 #+date: 03/12/2023
 
 * Introduction
+
   This repository contains the Nix Flake configuration for macOS using nix-darwin. It provides a declarative and reproducible setup for managing your system and user packages, along with various system configurations.
   
 * Configuration Files
-  - ~darwin-configuration.nix~: Defines the system and user packages, system services, and system state version.
-  - ~flake.nix~: Specifies dependencies and defines the darwinConfigurations for nix-darwin.
-  - ~home.nix~: Configuration for home-manager, including user packages and program settings.
+
+  - ~darwin-configuration.nix~: Defines the system and user packages, system services, and system state version
+  - ~flake.nix~: Specifies dependencies and defines the darwinConfigurations for nix-darwin
+  - ~home.nix~: Configuration for home-manager, including user packages and program settings
 
 * System Packages
+
   Here are some of the system packages installed:
-  - alacritty
-  - bat
-  - black
-  - docker
-  - emacs
-  - fd
-  - git
-  - jq
-  - node.js
-  - PostgreSQL
-  - shellcheck
-  - Zsh
+  
+  - Alacritty config
+  - Aspell for English Language in Emacs
+  - Python packages for LSP and Emacs
   - Fonts (Fira Mono, Font Awesome, etc.)
     
+* System Settings
+
+Nix Darwin allows you to set system preferences in the configuration file. For example the dock. keyboard mapping and more.
+
+For example:
+
+#+begin_src nix
+      defaults = {
+      dock = {
+        autohide = true;
+        show-recents = true;
+        launchanim = true;
+        mouse-over-hilite-stack = true;
+        orientation = "bottom";
+        tilesize = 43;
+        largesize = 64;
+      };
+#+end_src
+
+
 * Services
-  - nix-daemon: Enabled for package management.
-  - yabai and skhd: Window management tools.
-  - zsh: Configured with completion and aliases.
+
+  - Yabai: For window tiling
+  - ZSH: Configured with completion and aliases
+  - skhd: for custom keyboard commands linked to Yabai
 
 * Keyboard Configuration
-  - Caps Lock remapped to Control.
-  - Other key mappings and settings.
+
+  - Caps Lock remapped to Control
+  - Other key mappings crucial for comfortable tiling
+  - Lock Screen
+  - Quickly open applications like Alacritty (cmd + return)
 
 * Usage
+
   To use this configuration, follow these steps:
 
-  1. Clone this repository.
-  2. Modify ~darwin-configuration.nix~, ~flake.nix~, and ~home.nix~ to suit your preferences (don't forget the usernames).
-  3. Set your system architecture in ~flake.nix~.
-  4. Update ~users.users."martinbrignall".home~ in ~flake.nix~ to match your home directory.
-  5. Install Nix if not already installed.
-  6. Use the ~build~ command (after editing the location)
+  1. Clone this repository
+  2. Modify ~darwin-configuration.nix~, ~flake.nix~, and ~home.nix~ to suit your preferences (don't forget the usernames)
+  3. Set your system architecture in ~flake.nix~
+  4. Update ~users.users."<your-username>".home~ in ~flake.nix~ to match your home directory
+  5. Install Nix if not already installed
+  6. Use the ~build~ command (after editing the location):
+     
+     ~nix run nix-darwin -- switch --flake ~/git/nix-darwin/.~
 
 * Additional Notes
-  - Make sure the stateVersion in ~darwin-configuration.nix~ matches your setup.
-  - Customize the Zsh aliases and other configurations in ~home.nix~ to fit your workflow.
+
+  - Make sure the stateVersion in ~darwin-configuration.nix~ matches your setup
 
 Feel free to reach out if you have any questions or need further assistance.
 
