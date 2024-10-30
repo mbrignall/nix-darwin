@@ -9,8 +9,6 @@ in
       "23.11"; # Make sure this matches the Nixpkgs version you are using
 
     file.".config/alacritty/alacritty.yml".source = ./.config/alacritty/alacritty.yml;
-    file.".config/yabai/yabairc".source = ./.config/yabai/yabairc;
-    file.".config/skhd/skhdrc".source = ./.config/skhd/skhdrc;
     file.".config/sketchybar/sketchybarrc".source = ./.config/sketchybar/sketchybarrc;
     file.".config/sketchybar/sketchybarrc-laptop".source = ./.config/sketchybar/sketchybarrc-laptop;
     file.".config/sketchybar/plugins/battery.sh".source = ./.config/sketchybar/plugins/battery.sh;
@@ -21,6 +19,7 @@ in
 
     packages = with pkgs; [
       bat
+      direnv
       zsh-powerlevel10k
 
     ];

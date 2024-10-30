@@ -1,12 +1,12 @@
 # ~/.config/alacritty/alacritty.yml
 
 window:
-  decorations: none
   opacity: 1
+  option_as_alt: Both
 
   padding:
-    x: 6
-    y: 6
+    x: 10
+    y: 10
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.

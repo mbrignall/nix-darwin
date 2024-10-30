@@ -22,7 +22,7 @@ in {
       experimental-features = nix-command flakes
     '';
   };
-
+  
   home-manager.useUserPackages = true;
 
   # System packages
@@ -117,7 +117,7 @@ in {
     terminus-nerdfont
     victor-mono
   ];
-
+    
   # Auto upgrade nix package and the daemon service.eg
   services = {
 
@@ -132,46 +132,64 @@ in {
       package = pkgs.sketchybar;
     };
 
-    skhd = {
-      enable = true;
-      package = pkgs.skhd;
-    };
-
     tailscale = {
       enable = true;
       package = pkgs.tailscale;
     };
 
-    yabai = {
-      enable = true;
-      package = pkgs.yabai;
-      extraConfig = "/Users/martin.brignall/.config/yabai/yabairc";
-    };
   };
 
   # System State Version
-  system = {
-    stateVersion = 4; # Ensure this matches your setup
+  
+    system = {
+    
+    activationScripts.postUserActivation.text = ''
+      # Following line should allow us to avoid a logout/login cycle
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    '';
+    
+    stateVersion = 5;
 
     defaults = {
       dock = {
         autohide = true;
-        show-recents = true;
-        launchanim = true;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 0.2;
+        expose-animation-duration = 0.2;
+        show-recents = false;
+        launchanim = false;
+        static-only = false;
         mouse-over-hilite-stack = true;
         orientation = "bottom";
-        tilesize = 43;
-        largesize = 64;
+        tilesize = 36;
+        mru-spaces = false;
+        persistent-others = [ "~/projects" ];
       };
 
-      finder = { _FXShowPosixPathInTitle = false; };
-    };
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        FXPreferredViewStyle = "clmv";
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        _FXShowPosixPathInTitle = false;
+        _FXSortFoldersFirst = true;
+      };
 
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToControl = true;
+      NSGlobalDomain = {
+        AppleKeyboardUIMode = 3;
+        ApplePressAndHoldEnabled = false;
+        KeyRepeat = 1;
+        InitialKeyRepeat = 18;
+        "com.apple.sound.beep.volume" = 0.000;
+        _HIHideMenuBar = true;
+        NSWindowResizeTime = 0.001;
+        NSTableViewDefaultSizeMode = 1;
+      };
+      
+      
     };
-  };
-  programs.zsh.enable = true;
-  
+    };
+    
+    programs.zsh.enable = true;
 }
