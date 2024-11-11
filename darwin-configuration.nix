@@ -17,7 +17,7 @@ in {
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.allowUnfree = true;
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -32,12 +32,12 @@ in {
     bat
     black
     cmake
-    colima
     ditaa
     direnv
     djlint
     docker
     docker-compose
+    docker-compose-language-service
     editorconfig-core-c
     fd
     gcc
@@ -46,8 +46,6 @@ in {
     glib
     gnumake
     google-cloud-sdk
-    go
-    gopls
     nix-direnv
     html-tidy
     inkscape
@@ -57,34 +55,30 @@ in {
     lima
     mark
     nixd
-    nixfmt
     nodejs
     nodePackages.bash-language-server
     nodePackages.eslint
     nodePackages.prettier
     nodePackages.js-beautify
     nodePackages_latest.pnpm
-    nodePackages.pyright
     nodePackages.stylelint
     nodePackages_latest.ts-node
     nodePackages.svgo
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
-    nodePackages.vscode-html-languageserver-bin
     pandoc
     postgresql
     python311
-    python311Packages.black
     python311Packages.debugpy
     python311Packages.isort
     python311Packages.mypy
     python311Packages.rope
+    python311Packages.ruff
     python311Packages.pyflakes
     python311Packages.pylsp-mypy
     pipx
-    remmina
     roswell
-    ruff
+    ruff-lsp
     sbcl
     shellcheck
     shfmt
@@ -112,7 +106,6 @@ in {
     font-awesome_5
     material-design-icons
     noto-fonts
-    noto-fonts-cjk
     noto-fonts-emoji
     terminus-nerdfont
     victor-mono
@@ -136,6 +129,7 @@ in {
       enable = true;
       package = pkgs.tailscale;
     };
+
 
   };
 
@@ -163,7 +157,12 @@ in {
         orientation = "bottom";
         tilesize = 36;
         mru-spaces = false;
-        persistent-others = [ "~/projects" ];
+        persistent-apps =
+          [
+            "${pkgs.emacs29-macport}/Applications/Emacs.app"
+            "${pkgs.slack}/Applications/Slack.app"
+          ];
+        persistent-others = [ "/Users/martin.brignall/projects" ];
       };
 
       finder = {

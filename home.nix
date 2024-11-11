@@ -6,9 +6,9 @@ in
   home = {
     sessionVariables = { EDITOR = "emacsclient -t"; };
     stateVersion =
-      "23.11"; # Make sure this matches the Nixpkgs version you are using
+      "24.11";
 
-    file.".config/alacritty/alacritty.yml".source = ./.config/alacritty/alacritty.yml;
+    file.".config/alacritty/alacritty.toml".source = ./.config/alacritty/alacritty.toml;
     file.".config/sketchybar/sketchybarrc".source = ./.config/sketchybar/sketchybarrc;
     file.".config/sketchybar/sketchybarrc-laptop".source = ./.config/sketchybar/sketchybarrc-laptop;
     file.".config/sketchybar/plugins/battery.sh".source = ./.config/sketchybar/plugins/battery.sh;
@@ -60,7 +60,6 @@ in
       [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
       export PATH="/Users/martin.brignall/.local/bin:$PATH"
       '';
-      enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;
       shellAliases = {
