@@ -29,7 +29,7 @@ in
 
     emacs = {
       enable = true;
-      package = pkgs.emacs29-macport;
+      package = pkgs.emacs30;
       extraConfig = ''
         (setq standard-indent 2)
       '';
@@ -45,7 +45,8 @@ in
     bash.enable = true;
 
     home-manager.enable = true;
-    
+
+    ##  PATH="/opt/homebrew/opt/libtool/libexec/gnubin:$PATH"
     zsh = {
       enable = true;
       initExtra = ''
@@ -53,7 +54,7 @@ in
 
       [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
       source "$EAT_SHELL_INTEGRATION_DIR/zsh"
-      PATH="/opt/homebrew/opt/libtool/libexec/gnubin:$PATH"
+
 
       eval "$(direnv hook zsh)"
 

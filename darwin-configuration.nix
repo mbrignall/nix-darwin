@@ -31,6 +31,7 @@ in {
     alacritty
     bat
     black
+    clang
     cmake
     ditaa
     direnv
@@ -46,14 +47,17 @@ in {
     glib
     gnumake
     google-cloud-sdk
+    guile
     nix-direnv
     html-tidy
     inkscape
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     ispell
     jq
+    libgccjit
     lima
     mark
+    nasm
     nixd
     nodejs
     nodePackages.bash-language-server
@@ -77,6 +81,7 @@ in {
     python311Packages.pyflakes
     python311Packages.pylsp-mypy
     pipx
+    qemu
     roswell
     ruff-lsp
     sbcl
@@ -91,6 +96,7 @@ in {
     tex
     tree-sitter
     utm
+    virt-viewer
     wget
     wkhtmltopdf-bin
     yamlfmt
@@ -107,17 +113,18 @@ in {
     material-design-icons
     noto-fonts
     noto-fonts-emoji
-    terminus-nerdfont
+    nerd-fonts.terminess-ttf 
     victor-mono
   ];
     
   # Auto upgrade nix package and the daemon service.eg
   services = {
 
-    emacs = {
-      enable = true;
-      package = pkgs.emacs29-macport;
-    };
+    # emacs = {
+    #   enable = true;
+    #   package = pkgs.emacs;
+    # };
+    
     nix-daemon.enable = true;
 
     sketchybar = {
