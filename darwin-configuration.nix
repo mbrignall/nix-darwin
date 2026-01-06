@@ -22,20 +22,16 @@ in {
       experimental-features = nix-command flakes
     '';
   };
-  
+
   home-manager.useUserPackages = true;
 
   # System packages
   environment.systemPackages = with pkgs; [
     # Applications
-    alacritty
     bat
-    black
     clang
     cmake
-    ditaa
     direnv
-    djlint
     docker
     docker-compose
     docker-compose-language-service
@@ -47,90 +43,42 @@ in {
     glib
     gnumake
     google-cloud-sdk
-    guile
     nix-direnv
     html-tidy
     inkscape
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     ispell
     jq
-    libgccjit
-    lima
     mark
     nasm
-    nixd
-    nodejs
-    nodePackages.bash-language-server
-    nodePackages.eslint
-    nodePackages.prettier
-    nodePackages.js-beautify
-    nodePackages_latest.pnpm
-    nodePackages.stylelint
-    nodePackages_latest.ts-node
-    nodePackages.svgo
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted
     pandoc
     postgresql
     python311
-    python311Packages.debugpy
-    python311Packages.isort
-    python311Packages.mypy
-    python311Packages.rope
-    python311Packages.ruff
-    python311Packages.pyflakes
-    python311Packages.pylsp-mypy
-    pipx
     qemu
-    roswell
-    ruff-lsp
-    sbcl
-    shellcheck
-    shfmt
-    sketchybar
-    slack
-    spotify
-    stripe-cli
-    syncthing
-    terraform
+    raylib
+    rio
     tex
     tree-sitter
     utm
-    virt-viewer
     wget
     wkhtmltopdf-bin
     yamlfmt
     yaml-language-server
-    yarn
-    zellij
     zsh
     zsh-powerlevel10k
 
-    #fonts
-    fira-mono
-    font-awesome
-    font-awesome_5
-    material-design-icons
-    noto-fonts
-    noto-fonts-emoji
-    nerd-fonts.terminess-ttf 
-    victor-mono
   ];
-    
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-mono
+    nerd-fonts.droid-sans-mono
+  ];
+
+  
   # Auto upgrade nix package and the daemon service.eg
   services = {
-
-    # emacs = {
-    #   enable = true;
-    #   package = pkgs.emacs;
-    # };
     
     nix-daemon.enable = true;
-
-    sketchybar = {
-      enable = true;
-      package = pkgs.sketchybar;
-    };
 
     tailscale = {
       enable = true;
@@ -166,8 +114,7 @@ in {
         mru-spaces = false;
         persistent-apps =
           [
-            "${pkgs.emacs29-macport}/Applications/Emacs.app"
-            "${pkgs.slack}/Applications/Slack.app"
+            "${pkgs.rio}/Applications/Rio.app"
           ];
         persistent-others = [ "/Users/martin.brignall/projects" ];
       };

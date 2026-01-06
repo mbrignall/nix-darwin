@@ -8,13 +8,6 @@ in
     stateVersion =
       "24.11";
 
-    file.".config/alacritty/alacritty.toml".source = ./.config/alacritty/alacritty.toml;
-    file.".config/sketchybar/sketchybarrc".source = ./.config/sketchybar/sketchybarrc;
-    file.".config/sketchybar/sketchybarrc-laptop".source = ./.config/sketchybar/sketchybarrc-laptop;
-    file.".config/sketchybar/plugins/battery.sh".source = ./.config/sketchybar/plugins/battery.sh;
-    file.".config/sketchybar/plugins/clock.sh".source = ./.config/sketchybar/plugins/clock.sh;
-    file.".config/sketchybar/plugins/front_app.sh".source = ./.config/sketchybar/plugins/front_app.sh;
-    file.".config/sketchybar/plugins/spotify.sh".source = ./.config/sketchybar/plugins/spotify.sh;
     file.".p10k.zsh".source = ./.config/p10k.zsh;
 
     packages = with pkgs; [
@@ -26,14 +19,6 @@ in
   };
 
   programs = {
-
-    emacs = {
-      enable = true;
-      package = pkgs.emacs30;
-      extraConfig = ''
-        (setq standard-indent 2)
-      '';
-    };
     
     direnv = {
       enable = true;
@@ -42,8 +27,6 @@ in
     };
 
 
-    bash.enable = true;
-
     home-manager.enable = true;
 
     ##  PATH="/opt/homebrew/opt/libtool/libexec/gnubin:$PATH"
@@ -51,7 +34,7 @@ in
       enable = true;
       initExtra = ''
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+ 
       [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
       source "$EAT_SHELL_INTEGRATION_DIR/zsh"
 
@@ -83,9 +66,9 @@ in
 
         # Nix
 
-        build = "nix run nix-darwin -- switch --flake ~/git/nix-darwin/.";
-        update = "nix flake update ~/git/nix-darwin/.";
-        build-update = "nix run nix-darwin -- switch --flake ~/git/nix-darwin/. --update";
+        build = "sudo nix run nix-darwin -- switch --flake ~/git/nix-darwin/.";
+        update = "sudo nix flake update ~/git/nix-darwin/.";
+        build-update = "sudo nix run nix-darwin -- switch --flake ~/git/nix-darwin/. --update";
 
         # Python
         python = "python3";
