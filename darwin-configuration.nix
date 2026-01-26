@@ -115,6 +115,8 @@ in {
         persistent-apps =
           [
             "${pkgs.rio}/Applications/Rio.app"
+            "/Applications/Raycast.app"
+            "/Applications/Emacs.app"
           ];
         persistent-others = [ "/Users/martin.brignall/projects" ];
       };

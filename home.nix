@@ -64,22 +64,23 @@ in
         cat = "bat";
         ccat = "bat --color=always";
 
-        # Nix
-
-        build = "sudo nix run nix-darwin -- switch --flake ~/git/nix-darwin/.";
-        update = "sudo nix flake update ~/git/nix-darwin/.";
-        build-update = "sudo nix run nix-darwin -- switch --flake ~/git/nix-darwin/. --update";
-
         # Python
         python = "python3";
         pip="pip3";
+
+        # Nix specific
+        build = "sudo -H darwin-rebuild switch --flake ~/nix-darwin/.#OVO-LPXDY5HKQ2";
+        zz = "nix-shell -p _7zz";
       };
       
       plugins = with pkgs; [{
         file = "powerlevel10k.zsh-theme";
         name = "powerlevel10k";
-        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
+        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k"; 
       }];
     };
   };
 }
+
+
+  
