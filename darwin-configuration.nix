@@ -10,6 +10,25 @@ let
     #(setq org-preview-latex-default-process 'dvisvgm)
   });
 
+  et-bembo = pkgs.stdenv.mkDerivation {
+    pname = "et-bembo";
+    version = "master"; # Or a specific commit hash for reproducibility
+
+    src = pkgs.fetchFromGitHub {
+      owner = "DavidBarts";
+      repo = "ET_Bembo";
+      rev = "master"; 
+      # You will need to calculate this hash. 
+      # Use `nix-prefetch-url --unpack https://github.com/DavidBarts/ET_Bembo/archive/master.tar.gz`
+      # or set it to lib.fakeSha256 and let Nix tell you the correct one.
+      sha256 = "sha256-9G0Umcu5dkwx+mh0k5vPS3nIBdStlR0wBkDVzahVBwg="; 
+    };
+
+    installPhase = ''
+      install -m644 -D *.otf -t $out/share/fonts/opentype
+    '';
+  };
+
 in {
 
   # List packages installed in system profile.
@@ -44,6 +63,7 @@ in {
     gnumake
     google-cloud-sdk
     nix-direnv
+    nodePackages.prettier
     html-tidy
     inkscape
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
@@ -57,7 +77,7 @@ in {
     qemu
     raylib
     rio
-    tex
+    texs
     tree-sitter
     utm
     wget
@@ -67,14 +87,18 @@ in {
     zsh
     zsh-powerlevel10k
 
+    ## Fonts
+    source-sans-pro
+    et-bembo
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-mono
     nerd-fonts.droid-sans-mono
+    et-bembo
   ];
 
-  
+    
   # Auto upgrade nix package and the daemon service.eg
   services = {
     
