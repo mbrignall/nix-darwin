@@ -77,7 +77,7 @@ in {
     qemu
     raylib
     rio
-    texs
+    tex
     tree-sitter
     utm
     wget
@@ -88,6 +88,7 @@ in {
     zsh-powerlevel10k
 
     ## Fonts
+    fira-code
     source-sans-pro
     et-bembo
   ];
