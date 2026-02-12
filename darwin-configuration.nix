@@ -12,16 +12,13 @@ let
 
   et-bembo = pkgs.stdenv.mkDerivation {
     pname = "et-bembo";
-    version = "master"; # Or a specific commit hash for reproducibility
+    version = "master";
 
     src = pkgs.fetchFromGitHub {
       owner = "DavidBarts";
       repo = "ET_Bembo";
-      rev = "master"; 
-      # You will need to calculate this hash. 
-      # Use `nix-prefetch-url --unpack https://github.com/DavidBarts/ET_Bembo/archive/master.tar.gz`
-      # or set it to lib.fakeSha256 and let Nix tell you the correct one.
-      sha256 = "sha256-9G0Umcu5dkwx+mh0k5vPS3nIBdStlR0wBkDVzahVBwg="; 
+      rev = "master";
+      sha256 = "sha256-9G0Umcu5dkwx+mh0k5vPS3nIBdStlR0wBkDVzahVBwg=";
     };
 
     installPhase = ''
@@ -69,6 +66,8 @@ in {
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     ispell
     jq
+    libpng
+    libjpeg
     mark
     nasm
     pandoc
@@ -99,10 +98,10 @@ in {
     et-bembo
   ];
 
-    
+
   # Auto upgrade nix package and the daemon service.eg
   services = {
-    
+
     nix-daemon.enable = true;
 
     tailscale = {
@@ -114,14 +113,14 @@ in {
   };
 
   # System State Version
-  
+
     system = {
-    
+
     activationScripts.postUserActivation.text = ''
       # Following line should allow us to avoid a logout/login cycle
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
-    
+
     stateVersion = 5;
 
     defaults = {
@@ -166,10 +165,8 @@ in {
         NSWindowResizeTime = 0.001;
         NSTableViewDefaultSizeMode = 1;
       };
-      
-      
     };
     };
-    
+
     programs.zsh.enable = true;
 }
