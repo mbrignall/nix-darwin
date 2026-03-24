@@ -78,6 +78,7 @@ in {
     rio
     tex
     tree-sitter
+    solitaire-tui
     utm
     wget
     wkhtmltopdf-bin

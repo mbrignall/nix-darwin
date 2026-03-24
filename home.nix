@@ -8,7 +8,7 @@ in
     stateVersion =
       "24.11";
 
-    file.".p10k.zsh".source = ./.config/p10k.zsh;
+    ## file.".p10k.zsh".source = ./.config/p10k.zsh;
 
     packages = with pkgs; [
       bat
@@ -19,7 +19,7 @@ in
   };
 
   programs = {
-    
+
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -34,7 +34,7 @@ in
       enable = true;
       initExtra = ''
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
- 
+
       [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
       source "$EAT_SHELL_INTEGRATION_DIR/zsh"
 
@@ -72,15 +72,13 @@ in
         build = "sudo -H darwin-rebuild switch --flake ~/nix-darwin/.#OVO-LPXDY5HKQ2";
         zz = "nix-shell -p _7zz";
       };
-      
+
       plugins = with pkgs; [{
         file = "powerlevel10k.zsh-theme";
         name = "powerlevel10k";
-        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k"; 
+        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
       }];
     };
   };
 }
 
-
-  
