@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+
 let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -48,9 +49,6 @@ in {
     clang
     cmake
     direnv
-    docker
-    docker-compose
-    docker-compose-language-service
     editorconfig-core-c
     fd
     gcc
@@ -58,6 +56,7 @@ in {
     gimp
     glib
     gnumake
+    go
     google-cloud-sdk
     nix-direnv
     nodePackages.prettier
@@ -146,6 +145,20 @@ in {
         persistent-others = [ "/Users/martin.brignall/projects" ];
       };
 
+      WindowManager = {
+        # Click wallpaper to reveal desktop
+        EnableStandardClickToShowDesktop = false;
+
+        # Show items on desktop
+        StandardHideDesktopIcons = true;
+
+        # system.defaults.WindowManager.StageManagerHideWidgets
+        # Do not hide items on desktop & stage manager
+        HideDesktop = true;
+        StageManagerHideWidgets = true;
+        StandardHideWidgets = true;
+      };
+
       finder = {
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
@@ -156,18 +169,29 @@ in {
         _FXSortFoldersFirst = true;
       };
 
+      screensaver = {
+        # Require password immediately after sleep or screen saver begins
+        askForPassword = true;
+        askForPasswordDelay = 0;
+      };
+
+      screencapture = {
+        location = "~/Pictures/screenshots";
+        type = "png";
+      };
+
       NSGlobalDomain = {
         AppleKeyboardUIMode = 3;
+        AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = false;
         KeyRepeat = 1;
         InitialKeyRepeat = 18;
-        "com.apple.sound.beep.volume" = 0.000;
+        "com.apple.sound.beep.feedback" = 0;
         _HIHideMenuBar = true;
         NSWindowResizeTime = 0.001;
         NSTableViewDefaultSizeMode = 1;
       };
     };
     };
-
     programs.zsh.enable = true;
 }
