@@ -101,20 +101,14 @@ in {
 
   # Auto upgrade nix package and the daemon service.eg
   services = {
-
     nix-daemon.enable = true;
-
     tailscale = {
       enable = true;
       package = pkgs.tailscale;
     };
-
-
   };
 
-  # System State Version
-
-    system = {
+  system = {
 
     activationScripts.postUserActivation.text = ''
       # Following line should allow us to avoid a logout/login cycle
@@ -192,6 +186,6 @@ in {
         NSTableViewDefaultSizeMode = 1;
       };
     };
-    };
-    programs.zsh.enable = true;
+  };
+  programs.zsh.enable = true;
 }
